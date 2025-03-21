@@ -4,6 +4,7 @@ $host = "localhost";
 $username = "root";
 $pass = "";
 $db = "libreria";
+$genere = $_POST['genere'];
 
 $conn = mysqli_connect($host, $username, $pass, $db);
 
@@ -11,8 +12,16 @@ if (!$conn) {
     die("Connection failed: " . mysqli_connect_error());
 }
 
+$genere = "";
 $query = "SELECT * FROM libri";
+
+if (isset($_POST['genere']) && !empty($_POST['genere'])) {
+    $genere = $_POST['genere'];
+    $query = "SELECT * FROM libri WHERE genere = '$genere'";
+}
+
 $result = mysqli_query($conn, $query);
+
 ?>
 
 <!DOCTYPE html>
@@ -42,7 +51,7 @@ $result = mysqli_query($conn, $query);
         <td><?php echo $row['isbn']; }?></td>
 </table>
 
-<form action="index.php" method="post">
+<form action="index.php" method="POST">
     <laber for = "genere">Genere:</label>
     <input type="text" id= "genere" name="genere">
     <button type="submit">Cerca</button>
