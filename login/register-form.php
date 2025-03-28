@@ -7,7 +7,7 @@
 </head>
 <body>
     <h1>Registrati</h1>
-    <form action="register.php" method="post">
+    <form action="server/register.php" method="post">
         <label for="username">Nome utente:</label><br>
         <input type="text" id="username" name="username" required><br><br>
         
